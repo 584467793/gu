@@ -1,12 +1,15 @@
 {% extends "bootstrap/base.html" %}
 
-{% block title %}Flasky{% endblock %}
+{% block title %}船人{% endblock %}
 
 {% block head %}
 {{ super() }}
-<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
-<link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
-<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+<link rel="shortcut icon" href="{{ url_for('static', filename='designmodo') }}" type="image/x-icon">
+<link rel="icon" href="{{ url_for('static', filename='header-bg') }}" type="image/x-icon">
+<link rel="stylesheet" type="text/css"  href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/darkly/bootstrap.min.css">
+<body background={{url_for('static', filename='img/jiao.jpg',_external=True)}} style=" background-repeat:no-repeat ;
+background-size:100% 100%; 
+background-attachment:fixed;">
 {% endblock %}
 
 {% block navbar %}
@@ -19,13 +22,13 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="{{ url_for('main.index') }}">Flasky</a>
+            <a class="navbar-brand" href="{{ url_for('main.index') }}">船人</a>
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li><a href="{{ url_for('main.index') }}">Home</a></li>
+                <li><a href="{{ url_for('main.index') }}">主页</a></li>
                 {% if current_user.is_authenticated %}
-                <li><a href="{{ url_for('main.user', username=current_user.username) }}">Profile</a></li>
+                <li><a href="{{ url_for('main.user', username=current_user.username) }}">简介</a></li>
                 {% endif %}
             </ul>
             <ul class="nav navbar-nav navbar-right">
@@ -33,16 +36,16 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <img src="{{ current_user.gravatar(size=18) }}">
-                        Account <b class="caret"></b>
+                        账户<b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="{{ url_for('auth.change_password') }}">Change Password</a></li>
-                        <li><a href="{{ url_for('auth.change_email_request') }}">Change Email</a></li>
-                        <li><a href="{{ url_for('auth.logout') }}">Log Out</a></li>
+                        <li><a href="{{ url_for('auth.change_password') }}">变更密码</a></li>
+                        <li><a href="{{ url_for('auth.change_email_request') }}">变更邮箱</a></li>
+                        <li><a href="{{ url_for('auth.logout') }}">退出</a></li>
                     </ul>
                 </li>
                 {% else %}
-                <li><a href="{{ url_for('auth.login') }}">Log In</a></li>
+                <li><a href="{{ url_for('auth.login') }}">登录</a></li>
                 {% endif %}
             </ul>
         </div>
@@ -67,3 +70,4 @@
 {{ super() }}
 {{ moment.include_moment() }}
 {% endblock %}
+
